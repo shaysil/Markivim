@@ -1,0 +1,46 @@
+<!-- <table class="table table-striped">
+  <tr>
+    <th>שם המתכון</th>
+    <th>קטגוריה</th>
+    <th>רמת קושי</th>
+  </tr>
+  <tr *ngFor="let share of shares | async">
+    <td>{{ share.DBname }}</td>
+    <td>{{ share.DBCategoryId }}</td>
+  </tr>
+</table> -->
+
+<div class="container" style="margin-top:50px;">
+	<div class="row">
+
+    	<div class="col-xs-12 col-sm-6 col-md-3" *ngFor="let share of recipeList" >
+            <div class="col-item">
+                <div class="post-img-content">
+                    <img src="http://placehold.it/350x260" class="img-responsive" />
+                    <span class="post-title">
+                        <b>{{ share.DBCategoryId }}</b><br>
+                        <b>{{ share.DBDifficulty }}</b>
+                    </span>
+         
+                </div>
+                <div class="info">
+                    <div class="row">
+                        <div class="Title col-md-12">
+                            <h3>{{ share.DBname }} </h3>
+                            
+                        </div>
+                       
+                    </div>
+                    <div class="separator clear-left">
+                        <a [routerLink]="['/products',share.$key]">
+                        <p class="btn-details">
+                             <i class="fa fa-list"></i>לצפיה במתכון</p></a>
+                    </div>
+                    <div class="clearfix">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            </div>
+        </div>

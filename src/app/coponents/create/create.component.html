@@ -1,0 +1,83 @@
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+  <div class="panel-body">
+    <form [formGroup]="angForm" novalidate>
+
+      <div class="form-group">
+        <label class="col-md-6">שם המתכון</label>
+        <input type="text" class="form-control" Name="Recipe.Title" #Title />
+      </div>
+      
+      
+      <div class="form-group">
+        <label class="col-md-4">קטגוריה</label>
+        <select class="form-control" id="category" name="Recipe.category" #category><option value="" >בחרי מהרשימה</option>
+          <option *ngFor="let type of Types" [value]="type">{{type}}</option>  
+        </select>
+      </div>
+
+
+      <div class="form-group">
+        <label class="col-md-4">דרגת קושי</label>
+        <select class="form-control" id="Difficulty" name="Recipe.Difficulty" #diffs><option value="">בחרי מהרשימה</option>
+          <option *ngFor="let Dif of Difficulty" [value]="Dif">{{Dif}}</option>  
+        </select>
+        
+      </div>
+      
+      
+     
+
+      <div formArrayName="itemRows">
+            <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>*</th>
+                          <th>מרכיב</th>  
+                          <th>כמות</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr *ngFor="let itemrow of angForm.controls.itemRows.controls; let i=index" [formGroupName]="i">
+                                 <td>
+                                        <h4>{{ i + 1 }}</h4>
+                                 </td>
+                                <td>                                          
+                                  <input class="form-control" type="text" formControlName="itemname" />
+                                </td>
+                                <td>
+                                  <input class="form-control" type="text" formControlName="itemcode"/>
+                                </td>
+                                <td>
+                                        <button *ngIf="angForm.controls.itemRows.controls.length > 1" (click)="deleteRow(i)" class="btn btn-danger">מחיקת שורה</button>
+                                </td>
+                            </tr>
+                            <tr>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                                <tr><button type="button" (click)="addNewRow()" class="btn btn-primary"> הוספת שורה</button></tr>
+                        </tfoot>
+                    </table> 
+      </div>
+
+      <div class="form-group">
+          <label for="PreparationSteps">הוראות הכנה</label>  
+        <textarea name="Recipe.PreparationSteps" class="form-control" #PreparationSteps></textarea>
+          
+        </div>
+ 
+        <div class="form-group">
+          <button (click)="addRecipe(Title,category, diffs,PreparationSteps)" class="btn btn-primary">שמור</button>
+        </div>
+        
+    </form>
+    
+  </div>
+</div>
+</div></div>
+</div>
